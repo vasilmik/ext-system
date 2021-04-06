@@ -1,4 +1,4 @@
-package edu.javacourse.city.config;
+package edu.javacourse.cityReg.config;
 
 import java.io.InputStream;
 import java.util.Properties;

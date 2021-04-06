@@ -1,14 +1,12 @@
-package edu.javacourse.city.dao;
+package edu.javacourse.cityReg.dao;
 
-import edu.javacourse.city.domain.PersonRequest;
-import edu.javacourse.city.domain.PersonResponse;
-import edu.javacourse.city.exception.PersonCheckException;
+import edu.javacourse.cityReg.domain.PersonRequest;
+import edu.javacourse.cityReg.domain.PersonResponse;
+import edu.javacourse.cityReg.exception.PersonCheckException;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.time.LocalDate;
-
-import static org.junit.Assert.*;
 
 public class PersonCheckDaoTest {
 
@@ -24,7 +22,10 @@ public class PersonCheckDaoTest {
         pr.setExtension("2");
         pr.setApartment("1");
 
-        PersonResponse ans = new PersonCheckDao().checkPerson(pr);
+        PersonCheckDao dao = new PersonCheckDao();
+        dao.setConnectionBuilder(new DirectConnectionBuilder());
+
+        PersonResponse ans = dao.checkPerson(pr);
 
         Assert.assertTrue(ans.isRegistered());
         Assert.assertFalse(ans.isTemporal());

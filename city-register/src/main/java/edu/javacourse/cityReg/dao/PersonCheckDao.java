@@ -1,9 +1,9 @@
-package edu.javacourse.city.dao;
+package edu.javacourse.cityReg.dao;
 
-import edu.javacourse.city.config.Config;
-import edu.javacourse.city.domain.PersonRequest;
-import edu.javacourse.city.domain.PersonResponse;
-import edu.javacourse.city.exception.PersonCheckException;
+import edu.javacourse.cityReg.config.Config;
+import edu.javacourse.cityReg.domain.PersonRequest;
+import edu.javacourse.cityReg.domain.PersonResponse;
+import edu.javacourse.cityReg.exception.PersonCheckException;
 
 import java.sql.*;
 
@@ -16,9 +16,21 @@ public class PersonCheckDao {
             "and p.date_of_birth = ?  " +
             "and ca.street_code = ? and ca.building = ? and ca.extension = ? and ca.apartment = ?";
 
+    private ConnectionBuilder connectionBuilder;
+
+    public void setConnectionBuilder(ConnectionBuilder connectionBuilder) {
+        this.connectionBuilder = connectionBuilder;
+    }
+
+    private Connection getConnection() throws SQLException {
+
+        return connectionBuilder.getConnection();
+
+    }
+
     public PersonResponse checkPerson(PersonRequest request) throws PersonCheckException {
 
-         PersonResponse response = new PersonResponse();
+        PersonResponse response = new PersonResponse();
 
          try (Connection con = getConnection();
               PreparedStatement stmt = con.prepareStatement(SQL_REQUEST)) {
@@ -45,13 +57,5 @@ public class PersonCheckDao {
 
          return response;
      }
-
-    private Connection getConnection() throws SQLException {
-        Connection con = DriverManager.getConnection(
-                Config.getProperty(Config.DB_URL),
-                Config.getProperty(Config.DB_LOGIN),
-                Config.getProperty(Config.DB_PASSWORD));
-        return con;
-    }
 
 }

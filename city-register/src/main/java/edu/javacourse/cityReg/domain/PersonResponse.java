@@ -1,4 +1,4 @@
-package edu.javacourse.city.domain;
+package edu.javacourse.cityReg.domain;
 
 public class PersonResponse {
 
@@ -19,5 +19,13 @@ public class PersonResponse {
 
     public void setTemporal(boolean temporal) {
         this.temporal = temporal;
+    }
+
+    @Override
+    public String toString() {
+        return "PersonResponse{" +
+                "registered=" + registered +
+                ", temporal=" + temporal +
+                '}';
     }
 }

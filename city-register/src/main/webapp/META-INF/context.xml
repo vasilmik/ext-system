@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <Resource name="jdbc/cityRegister"
+              auth="Container"
+              type="javax.sql.DataSource"
+              driverClassName="org.postgresql.Driver"
+              url="jdbc:postgresql://localhost:5432/city_register"
+              username="postgres"
+              password="avtopass"
+              maxActive="4"
+              maxIdle="2"
+              maxWait="-1">
+    </Resource>
+</Context>
